@@ -24,6 +24,10 @@ exists a Morty who says everything backwards.
 
 
 int main (int ac, char** av) {
+	int start, stop;
+	int step = 1;
+	std::string dim;
+	
 	// Parse the command line arguments. The program is executed as
 	// ./AwwGeezMan {start} {stop} {dimension}
 	// or 
@@ -37,12 +41,37 @@ int main (int ac, char** av) {
 		return -1;
 	}
 	
-	// Parse the command line arguments
-	
+	else {
+		// assign start, stop, and dimension variables from cmd args
+		start = atoi(*(av + 1));
+		stop = atoi(*(av + 2));
+		dim.assign(*(av + ac - 1));
+
+		if (ac == 5) // if step value included in cmd arg, assign to step, else step is 1
+			step = atoi(*(av + 3));
+
+		if ((dim != "C137") && (dim != "Z286")) {
+			std::cout << "Error: Unknown Dimension!!";
+			
+			return -1;
+		}
+		else {
+			if (dim == "C137") {
+				std::cout << "Morty C137 says:" << std::endl;
+				if (step == 1) // if no step value in cmd args
+					C137::Morty(start, stop);
+				else
+					C137::Morty(start, stop, step);
+			}
+			else {
+				std::cout << "Morty Z286 says:" << std::endl;
+				if (step == 1)
+					Z286::Morty(start, stop);
+				else
+					Z286::Morty(start, stop, step);
+			}
+		}
+	}
 		
-	// Depending on the dimension of the arguments, call the appropriate Morty
-	// function
-	
-	
 	return 0;
 }
