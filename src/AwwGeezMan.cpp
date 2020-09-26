@@ -51,7 +51,7 @@ int main (int ac, char** av) {
 			step = atoi(*(av + 3));
 
 		if ((dim != "C137") && (dim != "Z286")) {
-			std::cout << "Error: Unknown Dimension!!";
+			std::cout << "Error: Unknown dimension!!";
 			
 			return -1;
 		}
